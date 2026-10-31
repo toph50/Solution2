@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp1
+﻿using System.Numerics;
+
+namespace ConsoleApp1
 {
     internal class Program
     {
@@ -10,11 +12,23 @@
                 jaggedArray[i] = new int[i + 1];
                 for (int j = 0; j <= i; j++)
                 {
-                    jaggedArray[i][j] = i + j;
+                    jaggedArray[i][j] = i + j+1;
                 }
             }
             return jaggedArray;
         }
+        static T SumArray<T>(IEnumerable<T> array) where T : INumber<T>
+        {
+            T sum = T.Zero;
+            foreach (T item in array)
+            {
+                sum += item;
+            }
+            return sum;
+        }
+
+
+
         static void PrintJaggedArray(int[][] jaggedArray)
         {
             int rows = jaggedArray.Length;
@@ -46,7 +60,7 @@
         }
         static void Main(string[] args)
         {
-            int[][] jaggedArray = GenerateJaggedArray(5);
+            int[][] jaggedArray = GenerateJaggedArray(8);
             PrintJaggedArray(jaggedArray);
 
         }
